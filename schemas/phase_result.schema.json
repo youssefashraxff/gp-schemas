@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "phase_result.schema.json",
+  "title": "PhaseResult",
+  "description": "One saved, versioned output of a phase. Fields are hashed and record which earlier fields they were built from, so edits propagate at field level.",
+  "type": "object",
+  "required": ["concept_id", "phase", "version", "status", "built_from", "fields"],
+  "additionalProperties": false,
+  "properties": {
+    "concept_id": { "type": "string" },
+    "phase": {
+      "title": "PhaseName",
+      "type": "string",
+      "enum": ["research", "brand_design", "visuals", "investment"]
+    },
+    "version": { "type": "integer", "minimum": 1 },
+    "status": {
+      "title": "PhaseStatus",
+      "type": "string",
+      "enum": ["queued", "running", "waiting_for_expert", "awaiting_approval", "done", "stale", "failed"]
+    },
+    "built_from": {
+      "type": "array",
+      "description": "Every earlier field this result read, with the version and hash it saw.",
+      "items": { "$ref": "#/$defs/FieldRef" }
+    },
+    "fields": {
+      "type": "object",
+      "description": "Output fields keyed by field path, e.g. 'target_segments'.",
+      "additionalProperties": { "$ref": "#/$defs/FieldValue" }
+    },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "FieldRef": {
+      "type": "object",
+      "required": ["phase", "version", "field_path", "content_hash"],
+      "additionalProperties": false,
+      "properties": {
+        "phase": { "type": "string", "enum": ["research", "brand_design", "visuals", "investment"] },
+        "version": { "type": "integer", "minimum": 1 },
+        "field_path": { "type": "string", "description": "e.g. 'target_segments' or 'competitors.pricing'" },
+        "content_hash": { "type": "string" }
+      }
+    },
+    "FieldValue": {
+      "type": "object",
+      "required": ["value", "content_hash"],
+      "additionalProperties": false,
+      "properties": {
+        "value": { "description": "Any JSON value." },
+        "content_hash": { "type": "string", "description": "Hash of the canonical JSON of value." }
+      }
+    }
+  }
+}

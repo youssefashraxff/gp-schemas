@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "concept_input.schema.json",
+  "title": "ConceptInput",
+  "description": "What a client submits to start a new commercial concept.",
+  "type": "object",
+  "required": ["site"],
+  "additionalProperties": false,
+  "properties": {
+    "site": {
+      "title": "SiteLocation",
+      "type": "object",
+      "required": ["name", "lat", "lng"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "description": "Human-readable site name or address." },
+        "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+        "lng": { "type": "number", "minimum": -180, "maximum": 180 }
+      }
+    },
+    "client_name": { "type": "string" },
+    "budget_egp": { "type": "number", "minimum": 0 },
+    "preferences": { "type": "string", "description": "Free-text preferences from the client." }
+  }
+}
