@@ -8,7 +8,7 @@
   "additionalProperties": false,
   "properties": {
     "concept_id": { "type": "string" },
-    "input": { "$ref": "#/$defs/ConceptInput" },
+    "input": { "$ref": "concept_input.schema.json" },
     "status": { "$ref": "#/$defs/ConceptStatus" },
     "current_phase": { "$ref": "#/$defs/PhaseName" },
     "created_at": { "type": "string", "format": "date-time" }
@@ -21,27 +21,6 @@
     "ConceptStatus": {
       "type": "string",
       "enum": ["created", "in_progress", "awaiting_approval", "completed", "failed"]
-    },
-    "SiteLocation": {
-      "type": "object",
-      "required": ["name", "lat", "lng"],
-      "additionalProperties": false,
-      "properties": {
-        "name": { "type": "string", "description": "Human-readable site name or address." },
-        "lat": { "type": "number", "minimum": -90, "maximum": 90 },
-        "lng": { "type": "number", "minimum": -180, "maximum": 180 }
-      }
-    },
-    "ConceptInput": {
-      "type": "object",
-      "required": ["site"],
-      "additionalProperties": false,
-      "properties": {
-        "site": { "$ref": "#/$defs/SiteLocation" },
-        "client_name": { "type": "string" },
-        "budget_egp": { "type": "number", "minimum": 0 },
-        "preferences": { "type": "string", "description": "Free-text preferences from the client." }
-      }
     }
   }
 }
