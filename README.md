@@ -13,6 +13,8 @@ Included as a **git submodule** at `schemas/` in both `gp-backend` and `gp-front
 |---|---|
 | `schemas/concept_input.schema.json` | What a client submits to start a concept |
 | `schemas/phase_result.schema.json` | A saved, versioned phase output with field-level `built_from` references and content hashes |
+| `schemas/concept.schema.json` | The stored concept returned by `POST /concepts` |
+| `schemas/progress_event.schema.json` | The progress message sent over the WebSocket |
 
 ## Changing a schema
 
