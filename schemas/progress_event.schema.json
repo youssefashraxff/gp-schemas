@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "progress_event.schema.json",
+  "title": "ProgressEvent",
+  "description": "A progress message the API sends over the WebSocket.",
+  "type": "object",
+  "required": ["concept_id", "phase", "status", "step", "timestamp"],
+  "additionalProperties": false,
+  "properties": {
+    "concept_id": { "type": "string" },
+    "phase": { "$ref": "#/$defs/PhaseName" },
+    "status": { "$ref": "#/$defs/PhaseStatus" },
+    "step": { "type": "string", "description": "Current step inside the phase, e.g. 'market_research'." },
+    "percent": { "type": "number", "minimum": 0, "maximum": 100 },
+    "message": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "PhaseName": {
+      "type": "string",
+      "enum": ["research", "brand_design", "visuals", "investment"]
+    },
+    "PhaseStatus": {
+      "type": "string",
+      "enum": ["queued", "running", "waiting_for_expert", "awaiting_approval", "done", "stale", "failed"]
+    }
+  }
+}

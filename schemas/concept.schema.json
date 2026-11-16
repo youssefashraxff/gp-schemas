@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "concept.schema.json",
+  "title": "Concept",
+  "description": "A stored concept, as returned by POST /concepts.",
+  "type": "object",
+  "required": ["concept_id", "input", "status", "current_phase", "created_at"],
+  "additionalProperties": false,
+  "properties": {
+    "concept_id": { "type": "string" },
+    "input": { "$ref": "#/$defs/ConceptInput" },
+    "status": { "$ref": "#/$defs/ConceptStatus" },
+    "current_phase": { "$ref": "#/$defs/PhaseName", "default": "research" },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "PhaseName": {
+      "type": "string",
+      "enum": ["research", "brand_design", "visuals", "investment"]
+    },
+    "ConceptStatus": {
+      "type": "string",
+      "enum": ["created", "in_progress", "awaiting_approval", "completed", "failed"]
+    },
+    "SiteLocation": {
+      "type": "object",
+      "required": ["name", "lat", "lng"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "description": "Human-readable site name or address." },
+        "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+        "lng": { "type": "number", "minimum": -180, "maximum": 180 }
+      }
+    },
+    "ConceptInput": {
+      "type": "object",
+      "required": ["site"],
+      "additionalProperties": false,
+      "properties": {
+        "site": { "$ref": "#/$defs/SiteLocation" },
+        "client_name": { "type": "string" },
+        "budget_egp": { "type": "number", "minimum": 0 },
+        "preferences": { "type": "string", "description": "Free-text preferences from the client." }
+      }
+    }
+  }
+}

@@ -8,17 +8,9 @@
   "additionalProperties": false,
   "properties": {
     "concept_id": { "type": "string" },
-    "phase": {
-      "title": "PhaseName",
-      "type": "string",
-      "enum": ["research", "brand_design", "visuals", "investment"]
-    },
+    "phase": { "$ref": "#/$defs/PhaseName" },
     "version": { "type": "integer", "minimum": 1 },
-    "status": {
-      "title": "PhaseStatus",
-      "type": "string",
-      "enum": ["queued", "running", "waiting_for_expert", "awaiting_approval", "done", "stale", "failed"]
-    },
+    "status": { "$ref": "#/$defs/PhaseStatus" },
     "built_from": {
       "type": "array",
       "description": "Every earlier field this result read, with the version and hash it saw.",
@@ -32,12 +24,20 @@
     "created_at": { "type": "string", "format": "date-time" }
   },
   "$defs": {
+    "PhaseName": {
+      "type": "string",
+      "enum": ["research", "brand_design", "visuals", "investment"]
+    },
+    "PhaseStatus": {
+      "type": "string",
+      "enum": ["queued", "running", "waiting_for_expert", "awaiting_approval", "done", "stale", "failed"]
+    },
     "FieldRef": {
       "type": "object",
       "required": ["phase", "version", "field_path", "content_hash"],
       "additionalProperties": false,
       "properties": {
-        "phase": { "type": "string", "enum": ["research", "brand_design", "visuals", "investment"] },
+        "phase": { "$ref": "#/$defs/PhaseName" },
         "version": { "type": "integer", "minimum": 1 },
         "field_path": { "type": "string", "description": "e.g. 'target_segments' or 'competitors.pricing'" },
         "content_hash": { "type": "string" }
@@ -48,7 +48,7 @@
       "required": ["value", "content_hash"],
       "additionalProperties": false,
       "properties": {
-        "value": { "description": "Any JSON value." },
+        "value": true,
         "content_hash": { "type": "string", "description": "Hash of the canonical JSON of value." }
       }
     }
