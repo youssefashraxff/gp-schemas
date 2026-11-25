@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "escalation.schema.json",
+  "title": "EscalationDecision",
+  "type": "object",
+  "required": ["escalate", "reason"],
+  "additionalProperties": false,
+  "properties": {
+    "escalate": { "type": "boolean" },
+    "question": { "type": "string", "description": "Required when escalate is true." },
+    "reason": { "type": "string" },
+    "choices": { "type": "array", "items": { "type": "string" } }
+  }
+}
