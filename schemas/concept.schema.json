@@ -24,7 +24,7 @@
     },
     "SiteLocation": {
       "type": "object",
-      "required": ["name", "lat", "lng"],
+      "required": ["lat", "lng"],
       "additionalProperties": false,
       "properties": {
         "name": { "type": "string", "description": "Human-readable site name or address." },

@@ -1,0 +1,284 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "research_result.schema.json",
+  "title": "ResearchResult",
+  "description": "The final Phase 1 result. Phase 2 reads this shape.",
+  "type": "object",
+  "required": ["site", "market", "gaps", "segments", "competitors", "verdict", "chosen_business_type"],
+  "additionalProperties": false,
+  "properties": {
+    "site": { "$ref": "#/$defs/SiteOutput" },
+    "market": { "$ref": "#/$defs/MarketOutput" },
+    "gaps": { "$ref": "#/$defs/GapsOutput" },
+    "segments": { "$ref": "#/$defs/SegmentsOutput" },
+    "competitors": { "$ref": "#/$defs/CompetitorsOutput" },
+    "verdict": { "$ref": "#/$defs/SupervisorVerdict" },
+    "chosen_business_type": { "type": "string", "description": "The business type the expert chose." }
+  },
+  "$defs": {
+    "SourcedValue": {
+      "type": "object",
+      "required": ["value", "source", "retrieved_at", "method", "confidence", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "value": true,
+        "source": { "type": "string", "description": "A URL, or \"expert\"." },
+        "retrieved_at": { "type": "string", "format": "date" },
+        "method": { "type": "string", "enum": ["google_places", "web_search", "expert_answer", "estimate"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "kind": { "type": "string", "enum": ["fact", "estimate", "assumption"] }
+      }
+    },
+    "Stage": { "type": "string", "enum": ["site", "market", "gaps", "segments", "competitors"] },
+    "Theme": {
+      "type": "object",
+      "required": ["theme", "summary", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "theme": { "type": "string", "description": "e.g. price_value, service, kids, parking, waiting." },
+        "summary": { "type": "string" },
+        "evidence": { "$ref": "#/$defs/SourcedValue" }
+      }
+    },
+    "Place": {
+      "type": "object",
+      "required": ["lat", "lng"],
+      "additionalProperties": false,
+      "properties": {
+        "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+        "lng": { "type": "number", "minimum": -180, "maximum": 180 },
+        "address": { "type": "string" }
+      }
+    },
+
+    "AccessRegister": {
+      "type": "object",
+      "required": ["entrances", "roads", "u_turns", "barriers", "parking"],
+      "additionalProperties": false,
+      "properties": {
+        "entrances": { "type": "array", "items": { "$ref": "#/$defs/SourcedValue" } },
+        "roads": { "type": "array", "items": { "$ref": "#/$defs/SourcedValue" } },
+        "u_turns": { "type": "array", "items": { "$ref": "#/$defs/SourcedValue" } },
+        "barriers": { "type": "array", "items": { "$ref": "#/$defs/SourcedValue" } },
+        "parking": { "type": "array", "items": { "$ref": "#/$defs/SourcedValue" } }
+      }
+    },
+    "NearbyUse": {
+      "type": "object",
+      "required": ["category", "name", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "category": { "type": "string", "enum": ["housing", "offices", "schools", "hospitals", "transport", "other"] },
+        "name": { "type": "string" },
+        "evidence": { "$ref": "#/$defs/SourcedValue" }
+      }
+    },
+    "TravelTime": {
+      "type": "object",
+      "required": ["origin_area", "direction", "time_of_day", "minutes"],
+      "additionalProperties": false,
+      "properties": {
+        "origin_area": { "type": "string" },
+        "direction": { "type": "string", "enum": ["to_site", "from_site"] },
+        "time_of_day": { "type": "string", "enum": ["morning_peak", "midday", "evening_peak", "night"] },
+        "minutes": { "$ref": "#/$defs/SourcedValue" }
+      }
+    },
+    "SiteOutput": {
+      "type": "object",
+      "required": ["access", "nearby_uses", "travel_times", "constraints"],
+      "additionalProperties": false,
+      "properties": {
+        "access": { "$ref": "#/$defs/AccessRegister" },
+        "nearby_uses": { "type": "array", "items": { "$ref": "#/$defs/NearbyUse" } },
+        "travel_times": { "type": "array", "items": { "$ref": "#/$defs/TravelTime" } },
+        "constraints": { "type": "array", "items": { "$ref": "#/$defs/SourcedValue" } }
+      }
+    },
+
+    "DemandDriver": {
+      "type": "object",
+      "required": ["category", "description", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "category": { "type": "string", "enum": ["tourism", "vision_2030", "area_plan", "spending_trend", "other"] },
+        "description": { "type": "string" },
+        "evidence": { "$ref": "#/$defs/SourcedValue" }
+      }
+    },
+    "ReachableDemand": {
+      "type": "object",
+      "required": ["label", "unit", "low", "high", "denominator", "assumptions"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string" },
+        "unit": { "type": "string" },
+        "low": { "$ref": "#/$defs/SourcedValue" },
+        "high": { "$ref": "#/$defs/SourcedValue" },
+        "denominator": { "$ref": "#/$defs/SourcedValue" },
+        "assumptions": { "type": "array", "items": { "$ref": "#/$defs/SourcedValue" } }
+      }
+    },
+    "KeyFigure": {
+      "type": "object",
+      "required": ["name", "figure"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "figure": { "$ref": "#/$defs/SourcedValue" }
+      }
+    },
+    "MarketOutput": {
+      "type": "object",
+      "required": ["demand_drivers", "reachable_demand", "key_figures"],
+      "additionalProperties": false,
+      "properties": {
+        "demand_drivers": { "type": "array", "items": { "$ref": "#/$defs/DemandDriver" } },
+        "reachable_demand": { "type": "array", "items": { "$ref": "#/$defs/ReachableDemand" } },
+        "key_figures": { "type": "array", "items": { "$ref": "#/$defs/KeyFigure" } }
+      }
+    },
+
+    "GapCandidate": {
+      "type": "object",
+      "required": ["business_type", "reason", "evidence", "origin"],
+      "additionalProperties": false,
+      "properties": {
+        "business_type": { "type": "string" },
+        "reason": { "type": "string", "description": "Which unmet demand it serves." },
+        "evidence": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/SourcedValue" } },
+        "origin": { "type": "string", "enum": ["user", "agent"] }
+      }
+    },
+    "GapsOutput": {
+      "type": "object",
+      "required": ["candidates"],
+      "additionalProperties": false,
+      "properties": {
+        "candidates": { "type": "array", "minItems": 2, "maxItems": 4, "items": { "$ref": "#/$defs/GapCandidate" } }
+      }
+    },
+
+    "Segment": {
+      "type": "object",
+      "required": ["who", "needs", "occasions", "spending_level", "time_of_day", "season"],
+      "additionalProperties": false,
+      "properties": {
+        "who": { "type": "string" },
+        "needs": { "type": "array", "items": { "type": "string" } },
+        "occasions": { "type": "array", "items": { "type": "string" } },
+        "spending_level": { "$ref": "#/$defs/SourcedValue" },
+        "time_of_day": { "type": "array", "items": { "type": "string" } },
+        "season": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "SegmentsForType": {
+      "type": "object",
+      "required": ["business_type", "segments", "review_themes", "social_themes"],
+      "additionalProperties": false,
+      "properties": {
+        "business_type": { "type": "string" },
+        "segments": { "type": "array", "items": { "$ref": "#/$defs/Segment" } },
+        "review_themes": { "type": "array", "items": { "$ref": "#/$defs/Theme" } },
+        "social_themes": { "type": "array", "items": { "$ref": "#/$defs/Theme" } }
+      }
+    },
+    "SegmentsOutput": {
+      "type": "object",
+      "required": ["by_business_type"],
+      "additionalProperties": false,
+      "properties": {
+        "by_business_type": { "type": "array", "items": { "$ref": "#/$defs/SegmentsForType" } }
+      }
+    },
+
+    "Swot": {
+      "type": "object",
+      "required": ["strengths", "weaknesses", "opportunities", "threats"],
+      "additionalProperties": false,
+      "properties": {
+        "strengths": { "type": "array", "items": { "$ref": "#/$defs/SourcedValue" } },
+        "weaknesses": { "type": "array", "items": { "$ref": "#/$defs/SourcedValue" } },
+        "opportunities": { "type": "array", "items": { "$ref": "#/$defs/SourcedValue" } },
+        "threats": { "type": "array", "items": { "$ref": "#/$defs/SourcedValue" } }
+      }
+    },
+    "Competitor": {
+      "type": "object",
+      "required": ["name", "kind", "location", "rating", "review_count", "review_themes", "popular_times", "promise", "history", "barriers", "swot"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "kind": { "type": "string", "enum": ["direct", "substitute"] },
+        "location": { "$ref": "#/$defs/Place" },
+        "rating": { "$ref": "#/$defs/SourcedValue" },
+        "review_count": { "$ref": "#/$defs/SourcedValue" },
+        "review_themes": { "type": "array", "items": { "$ref": "#/$defs/Theme" } },
+        "popular_times": { "$ref": "#/$defs/SourcedValue" },
+        "promise": { "$ref": "#/$defs/SourcedValue" },
+        "history": { "$ref": "#/$defs/SourcedValue" },
+        "barriers": { "type": "array", "items": { "$ref": "#/$defs/SourcedValue" } },
+        "swot": { "$ref": "#/$defs/Swot" }
+      }
+    },
+    "CompetitorsForType": {
+      "type": "object",
+      "required": ["business_type", "competitors"],
+      "additionalProperties": false,
+      "properties": {
+        "business_type": { "type": "string" },
+        "competitors": { "type": "array", "items": { "$ref": "#/$defs/Competitor" }, "description": "Target 20-30 entities." }
+      }
+    },
+    "CompetitorsOutput": {
+      "type": "object",
+      "required": ["by_business_type"],
+      "additionalProperties": false,
+      "properties": {
+        "by_business_type": { "type": "array", "items": { "$ref": "#/$defs/CompetitorsForType" } }
+      }
+    },
+
+    "Contradiction": {
+      "type": "object",
+      "required": ["description", "stages"],
+      "additionalProperties": false,
+      "properties": {
+        "description": { "type": "string" },
+        "stages": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/Stage" } }
+      }
+    },
+    "MissingSource": {
+      "type": "object",
+      "required": ["stage", "field_path"],
+      "additionalProperties": false,
+      "properties": {
+        "stage": { "$ref": "#/$defs/Stage" },
+        "field_path": { "type": "string" }
+      }
+    },
+    "GapRecheck": {
+      "type": "object",
+      "required": ["business_type", "well_served", "note"],
+      "additionalProperties": false,
+      "properties": {
+        "business_type": { "type": "string" },
+        "well_served": { "type": "boolean", "description": "True if competitors already serve this gap well." },
+        "note": { "type": "string" }
+      }
+    },
+    "SupervisorVerdict": {
+      "type": "object",
+      "required": ["decision", "reason", "contradictions", "missing_sources", "gap_recheck"],
+      "additionalProperties": false,
+      "properties": {
+        "decision": { "type": "string", "enum": ["finish", "rerun", "ask_expert"] },
+        "rerun_stage": { "$ref": "#/$defs/Stage", "description": "Required when decision is rerun." },
+        "reason": { "type": "string" },
+        "contradictions": { "type": "array", "items": { "$ref": "#/$defs/Contradiction" } },
+        "missing_sources": { "type": "array", "items": { "$ref": "#/$defs/MissingSource" } },
+        "gap_recheck": { "type": "array", "items": { "$ref": "#/$defs/GapRecheck" } }
+      }
+    }
+  }
+}

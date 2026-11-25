@@ -12,12 +12,14 @@ Included as a **git submodule** at `schemas/` in both `gp-backend` and `gp-front
 | File | What it describes |
 |---|---|
 | `schemas/concept_input.schema.json` | What a client submits to start a concept |
-| `schemas/phase_result.schema.json` | A saved, versioned phase output with field-level `built_from` references and content hashes |
 | `schemas/concept.schema.json` | The stored concept returned by `POST /concepts` |
 | `schemas/progress_event.schema.json` | The progress message sent over the WebSocket |
 | `schemas/evidence.schema.json` | Where one fact came from (computable / retrieved / expert). Copied into other schemas' `$defs` |
 | `schemas/escalation.schema.json` | A question an agent asks the expert mid-task, and its answer |
 | `schemas/research_output.schema.json` | The output fields of Phase 1 (Research), every fact with evidence |
+| `schemas/phase_result.schema.json` | A saved, versioned phase output with field-level `built_from` references and content hashes |
+| `schemas/research_result.schema.json` | The final Phase 1 result ... |
+
 
 ## Changing a schema
 
