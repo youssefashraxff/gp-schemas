@@ -10,7 +10,7 @@
     "site": {
       "title": "SiteLocation",
       "type": "object",
-      "required": ["name", "lat", "lng"],
+      "required": ["lat", "lng"],
       "additionalProperties": false,
       "properties": {
         "name": { "type": "string", "description": "Human-readable site name or address." },
@@ -19,6 +19,7 @@
       }
     },
     "client_name": { "type": "string" },
+    "business_types": { "type": "array", "items": { "type": "string" } },
     "budget_egp": { "type": "number", "minimum": 0 },
     "preferences": { "type": "string", "description": "Free-text preferences from the client." }
   }
