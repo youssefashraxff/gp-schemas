@@ -1,0 +1,571 @@
+{
+  "site": {
+    "access": {
+      "entrances": [
+        {
+          "value": "Placeholder: main entrance on the primary street",
+          "source": "illustrative sample, not researched",
+          "retrieved_at": "2026-11-25",
+          "method": "estimate",
+          "confidence": 0.2,
+          "kind": "assumption"
+        }
+      ],
+      "roads": [
+        {
+          "value": "Placeholder: one-way street with heavy evening traffic",
+          "source": "illustrative sample, not researched",
+          "retrieved_at": "2026-11-25",
+          "method": "estimate",
+          "confidence": 0.2,
+          "kind": "assumption"
+        }
+      ],
+      "u_turns": [
+        {
+          "value": "Placeholder: nearest U-turn about 300 m away",
+          "source": "illustrative sample, not researched",
+          "retrieved_at": "2026-11-25",
+          "method": "estimate",
+          "confidence": 0.2,
+          "kind": "assumption"
+        }
+      ],
+      "barriers": [
+        {
+          "value": "Placeholder: narrow pavement",
+          "source": "illustrative sample, not researched",
+          "retrieved_at": "2026-11-25",
+          "method": "estimate",
+          "confidence": 0.2,
+          "kind": "assumption"
+        }
+      ],
+      "parking": [
+        {
+          "value": "Placeholder: street parking only",
+          "source": "illustrative sample, not researched",
+          "retrieved_at": "2026-11-25",
+          "method": "estimate",
+          "confidence": 0.2,
+          "kind": "assumption"
+        }
+      ]
+    },
+    "nearby_uses": [
+      {
+        "category": "housing",
+        "name": "Placeholder residential blocks",
+        "evidence": {
+          "value": "Dense housing around the pin",
+          "source": "illustrative sample, not researched",
+          "retrieved_at": "2026-11-25",
+          "method": "estimate",
+          "confidence": 0.2,
+          "kind": "assumption"
+        }
+      },
+      {
+        "category": "offices",
+        "name": "Placeholder office buildings",
+        "evidence": {
+          "value": "Small offices within walking distance",
+          "source": "illustrative sample, not researched",
+          "retrieved_at": "2026-11-25",
+          "method": "estimate",
+          "confidence": 0.2,
+          "kind": "assumption"
+        }
+      }
+    ],
+    "travel_times": [
+      {
+        "origin_area": "Downtown Cairo",
+        "direction": "to_site",
+        "time_of_day": "evening_peak",
+        "minutes": {
+          "value": 30,
+          "source": "illustrative sample, not researched",
+          "retrieved_at": "2026-11-25",
+          "method": "estimate",
+          "confidence": 0.2,
+          "kind": "assumption"
+        }
+      },
+      {
+        "origin_area": "New Cairo",
+        "direction": "to_site",
+        "time_of_day": "morning_peak",
+        "minutes": {
+          "value": 55,
+          "source": "illustrative sample, not researched",
+          "retrieved_at": "2026-11-25",
+          "method": "estimate",
+          "confidence": 0.2,
+          "kind": "assumption"
+        }
+      }
+    ],
+    "constraints": [
+      {
+        "value": "Placeholder: building height and signage rules not yet checked",
+        "source": "illustrative sample, not researched",
+        "retrieved_at": "2026-11-25",
+        "method": "estimate",
+        "confidence": 0.2,
+        "kind": "assumption"
+      }
+    ]
+  },
+  "market": {
+    "demand_drivers": [
+      {
+        "category": "vision_2030",
+        "description": "National development strategy that shapes city and area planning.",
+        "evidence": {
+          "value": "Egypt launched its Sustainable Development Strategy, Egypt Vision 2030, in 2016; an updated version was published in 2023.",
+          "source": "https://mped.gov.eg/Files/Egypt_Vision_2030_EnglishDigitalUse.pdf",
+          "retrieved_at": "2026-11-25",
+          "method": "web_search",
+          "confidence": 0.9,
+          "kind": "fact"
+        }
+      },
+      {
+        "category": "spending_trend",
+        "description": "Placeholder: eating-out spending trend not yet researched.",
+        "evidence": {
+          "value": "Rising",
+          "source": "illustrative sample, not researched",
+          "retrieved_at": "2026-11-25",
+          "method": "estimate",
+          "confidence": 0.2,
+          "kind": "assumption"
+        }
+      }
+    ],
+    "reachable_demand": [
+      {
+        "label": "Weekly customers within a 10-minute walk",
+        "unit": "customers per week",
+        "low": {
+          "value": 800,
+          "source": "illustrative sample, not researched",
+          "retrieved_at": "2026-11-25",
+          "method": "estimate",
+          "confidence": 0.2,
+          "kind": "assumption"
+        },
+        "high": {
+          "value": 1500,
+          "source": "illustrative sample, not researched",
+          "retrieved_at": "2026-11-25",
+          "method": "estimate",
+          "confidence": 0.2,
+          "kind": "assumption"
+        },
+        "denominator": {
+          "value": "Residents plus daytime workers within 800 m",
+          "source": "illustrative sample, not researched",
+          "retrieved_at": "2026-11-25",
+          "method": "estimate",
+          "confidence": 0.2,
+          "kind": "assumption"
+        },
+        "assumptions": [
+          {
+            "value": "Placeholder: 5% of the area population visits weekly",
+            "source": "illustrative sample, not researched",
+            "retrieved_at": "2026-11-25",
+            "method": "estimate",
+            "confidence": 0.2,
+            "kind": "assumption"
+          }
+        ]
+      }
+    ],
+    "key_figures": [
+      {
+        "name": "Egypt Vision 2030 launch year",
+        "figure": {
+          "value": 2016,
+          "source": "https://mped.gov.eg/Files/Egypt_Vision_2030_EnglishDigitalUse.pdf",
+          "retrieved_at": "2026-11-25",
+          "method": "web_search",
+          "confidence": 0.9,
+          "kind": "fact"
+        }
+      }
+    ]
+  },
+  "gaps": {
+    "candidates": [
+      {
+        "business_type": "Specialty cafe",
+        "reason": "Placeholder: unmet demand for quiet daytime seating.",
+        "evidence": [
+          {
+            "value": "Few seats per resident",
+            "source": "illustrative sample, not researched",
+            "retrieved_at": "2026-11-25",
+            "method": "estimate",
+            "confidence": 0.2,
+            "kind": "assumption"
+          }
+        ],
+        "origin": "user"
+      },
+      {
+        "business_type": "Co-working space",
+        "reason": "Placeholder: freelancers lack nearby workspace.",
+        "evidence": [
+          {
+            "value": "Office tenants are small firms",
+            "source": "illustrative sample, not researched",
+            "retrieved_at": "2026-11-25",
+            "method": "estimate",
+            "confidence": 0.2,
+            "kind": "assumption"
+          }
+        ],
+        "origin": "agent"
+      }
+    ]
+  },
+  "segments": {
+    "by_business_type": [
+      {
+        "business_type": "Specialty cafe",
+        "segments": [
+          {
+            "who": "Young professionals living or working nearby",
+            "needs": [
+              "quiet place",
+              "reliable wifi"
+            ],
+            "occasions": [
+              "work break",
+              "casual meetup"
+            ],
+            "spending_level": {
+              "value": "medium",
+              "source": "illustrative sample, not researched",
+              "retrieved_at": "2026-11-25",
+              "method": "estimate",
+              "confidence": 0.2,
+              "kind": "assumption"
+            },
+            "time_of_day": [
+              "morning",
+              "evening"
+            ],
+            "season": [
+              "winter",
+              "all year"
+            ]
+          }
+        ],
+        "review_themes": [
+          {
+            "theme": "parking",
+            "summary": "Placeholder: visitors complain about parking",
+            "evidence": {
+              "value": "Placeholder: visitors complain about parking",
+              "source": "illustrative sample, not researched",
+              "retrieved_at": "2026-11-25",
+              "method": "estimate",
+              "confidence": 0.2,
+              "kind": "assumption"
+            }
+          }
+        ],
+        "social_themes": [
+          {
+            "theme": "price_value",
+            "summary": "Placeholder: posts compare prices with nearby cafes",
+            "evidence": {
+              "value": "Placeholder: posts compare prices with nearby cafes",
+              "source": "illustrative sample, not researched",
+              "retrieved_at": "2026-11-25",
+              "method": "estimate",
+              "confidence": 0.2,
+              "kind": "assumption"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "competitors": {
+    "by_business_type": [
+      {
+        "business_type": "Specialty cafe",
+        "competitors": [
+          {
+            "name": "Placeholder Cafe A",
+            "kind": "direct",
+            "location": {
+              "lat": 30.0617,
+              "lng": 31.2197,
+              "address": "Placeholder, Zamalek, Cairo"
+            },
+            "rating": {
+              "value": 4.2,
+              "source": "illustrative sample, not researched",
+              "retrieved_at": "2026-11-25",
+              "method": "estimate",
+              "confidence": 0.2,
+              "kind": "assumption"
+            },
+            "review_count": {
+              "value": 300,
+              "source": "illustrative sample, not researched",
+              "retrieved_at": "2026-11-25",
+              "method": "estimate",
+              "confidence": 0.2,
+              "kind": "assumption"
+            },
+            "review_themes": [
+              {
+                "theme": "price_value",
+                "summary": "Placeholder: prices seen as high for the area",
+                "evidence": {
+                  "value": "Placeholder: prices seen as high for the area",
+                  "source": "illustrative sample, not researched",
+                  "retrieved_at": "2026-11-25",
+                  "method": "estimate",
+                  "confidence": 0.2,
+                  "kind": "assumption"
+                }
+              }
+            ],
+            "popular_times": {
+              "value": {
+                "friday": {
+                  "20:00": 0.9
+                },
+                "tuesday": {
+                  "11:00": 0.4
+                }
+              },
+              "source": "illustrative sample, not researched",
+              "retrieved_at": "2026-11-25",
+              "method": "estimate",
+              "confidence": 0.2,
+              "kind": "assumption"
+            },
+            "promise": {
+              "value": "Placeholder: relaxed specialty coffee with a quiet corner",
+              "source": "illustrative sample, not researched",
+              "retrieved_at": "2026-11-25",
+              "method": "estimate",
+              "confidence": 0.2,
+              "kind": "assumption"
+            },
+            "history": {
+              "value": "Placeholder: opened a few years ago",
+              "source": "illustrative sample, not researched",
+              "retrieved_at": "2026-11-25",
+              "method": "estimate",
+              "confidence": 0.2,
+              "kind": "assumption"
+            },
+            "barriers": [
+              {
+                "value": "Placeholder: lease costs on the main street",
+                "source": "illustrative sample, not researched",
+                "retrieved_at": "2026-11-25",
+                "method": "estimate",
+                "confidence": 0.2,
+                "kind": "assumption"
+              }
+            ],
+            "swot": {
+              "strengths": [
+                {
+                  "value": "Placeholder: established regulars",
+                  "source": "illustrative sample, not researched",
+                  "retrieved_at": "2026-11-25",
+                  "method": "estimate",
+                  "confidence": 0.2,
+                  "kind": "assumption"
+                }
+              ],
+              "weaknesses": [
+                {
+                  "value": "Placeholder: little parking",
+                  "source": "illustrative sample, not researched",
+                  "retrieved_at": "2026-11-25",
+                  "method": "estimate",
+                  "confidence": 0.2,
+                  "kind": "assumption"
+                }
+              ],
+              "opportunities": [
+                {
+                  "value": "Placeholder: evening events",
+                  "source": "illustrative sample, not researched",
+                  "retrieved_at": "2026-11-25",
+                  "method": "estimate",
+                  "confidence": 0.2,
+                  "kind": "assumption"
+                }
+              ],
+              "threats": [
+                {
+                  "value": "Placeholder: new openings nearby",
+                  "source": "illustrative sample, not researched",
+                  "retrieved_at": "2026-11-25",
+                  "method": "estimate",
+                  "confidence": 0.2,
+                  "kind": "assumption"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Placeholder Bakery B",
+            "kind": "substitute",
+            "location": {
+              "lat": 30.0622,
+              "lng": 31.2201,
+              "address": "Placeholder, Zamalek, Cairo"
+            },
+            "rating": {
+              "value": 4.2,
+              "source": "illustrative sample, not researched",
+              "retrieved_at": "2026-11-25",
+              "method": "estimate",
+              "confidence": 0.2,
+              "kind": "assumption"
+            },
+            "review_count": {
+              "value": 300,
+              "source": "illustrative sample, not researched",
+              "retrieved_at": "2026-11-25",
+              "method": "estimate",
+              "confidence": 0.2,
+              "kind": "assumption"
+            },
+            "review_themes": [
+              {
+                "theme": "price_value",
+                "summary": "Placeholder: prices seen as high for the area",
+                "evidence": {
+                  "value": "Placeholder: prices seen as high for the area",
+                  "source": "illustrative sample, not researched",
+                  "retrieved_at": "2026-11-25",
+                  "method": "estimate",
+                  "confidence": 0.2,
+                  "kind": "assumption"
+                }
+              }
+            ],
+            "popular_times": {
+              "value": {
+                "friday": {
+                  "20:00": 0.9
+                },
+                "tuesday": {
+                  "11:00": 0.4
+                }
+              },
+              "source": "illustrative sample, not researched",
+              "retrieved_at": "2026-11-25",
+              "method": "estimate",
+              "confidence": 0.2,
+              "kind": "assumption"
+            },
+            "promise": {
+              "value": "Placeholder: relaxed specialty coffee with a quiet corner",
+              "source": "illustrative sample, not researched",
+              "retrieved_at": "2026-11-25",
+              "method": "estimate",
+              "confidence": 0.2,
+              "kind": "assumption"
+            },
+            "history": {
+              "value": "Placeholder: opened a few years ago",
+              "source": "illustrative sample, not researched",
+              "retrieved_at": "2026-11-25",
+              "method": "estimate",
+              "confidence": 0.2,
+              "kind": "assumption"
+            },
+            "barriers": [
+              {
+                "value": "Placeholder: lease costs on the main street",
+                "source": "illustrative sample, not researched",
+                "retrieved_at": "2026-11-25",
+                "method": "estimate",
+                "confidence": 0.2,
+                "kind": "assumption"
+              }
+            ],
+            "swot": {
+              "strengths": [
+                {
+                  "value": "Placeholder: established regulars",
+                  "source": "illustrative sample, not researched",
+                  "retrieved_at": "2026-11-25",
+                  "method": "estimate",
+                  "confidence": 0.2,
+                  "kind": "assumption"
+                }
+              ],
+              "weaknesses": [
+                {
+                  "value": "Placeholder: little parking",
+                  "source": "illustrative sample, not researched",
+                  "retrieved_at": "2026-11-25",
+                  "method": "estimate",
+                  "confidence": 0.2,
+                  "kind": "assumption"
+                }
+              ],
+              "opportunities": [
+                {
+                  "value": "Placeholder: evening events",
+                  "source": "illustrative sample, not researched",
+                  "retrieved_at": "2026-11-25",
+                  "method": "estimate",
+                  "confidence": 0.2,
+                  "kind": "assumption"
+                }
+              ],
+              "threats": [
+                {
+                  "value": "Placeholder: new openings nearby",
+                  "source": "illustrative sample, not researched",
+                  "retrieved_at": "2026-11-25",
+                  "method": "estimate",
+                  "confidence": 0.2,
+                  "kind": "assumption"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "verdict": {
+    "decision": "finish",
+    "reason": "Sample data: all stages present.",
+    "contradictions": [],
+    "missing_sources": [],
+    "gap_recheck": [
+      {
+        "business_type": "Specialty cafe",
+        "well_served": false,
+        "note": "Placeholder: few direct competitors found."
+      },
+      {
+        "business_type": "Co-working space",
+        "well_served": false,
+        "note": "Placeholder: none found."
+      }
+    ]
+  },
+  "chosen_business_type": "Specialty cafe"
+}
