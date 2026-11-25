@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "escalation.schema.json",
+  "title": "Escalation",
+  "description": "A question an agent asks the expert mid-task instead of guessing, and its answer.",
+  "type": "object",
+  "required": ["escalation_id", "concept_id", "phase", "agent", "question", "context", "choices", "allow_free_text", "status", "created_at"],
+  "additionalProperties": false,
+  "properties": {
+    "escalation_id": { "type": "string" },
+    "concept_id": { "type": "string" },
+    "phase": { "$ref": "#/$defs/PhaseName" },
+    "agent": { "type": "string", "description": "The agent that asked, e.g. 'segments'." },
+    "question": { "type": "string" },
+    "reason": { "type": "string", "description": "Why the agent is asking (missing or conflicting sources)." },
+    "context": { "type": "array", "items": { "$ref": "#/$defs/Fact" }, "description": "What the agent found so far, with sources." },
+    "choices": { "type": "array", "minItems": 2, "maxItems": 4, "items": { "type": "string" } },
+    "allow_free_text": { "type": "boolean" },
+    "scorer_score": { "type": "number", "minimum": 0, "maximum": 1, "description": "Escalation scorer output, when the scorer decided." },
+    "status": { "type": "string", "enum": ["open", "reminded", "answered", "timed_out"] },
+    "answer": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "reminded_at": { "type": "string", "format": "date-time" },
+    "answered_at": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "PhaseName": {
+      "type": "string",
+      "enum": ["research", "brand_design", "visuals", "investment"]
+    },
+    "Evidence": {
+      "type": "object",
+      "description": "Where one fact came from. A fact is never estimated by an LLM.",
+      "required": ["fact_type", "source", "retrieved_at"],
+      "additionalProperties": false,
+      "properties": {
+        "fact_type": { "type": "string", "enum": ["computable", "retrieved", "expert"] },
+        "source": {
+          "type": "object",
+          "required": ["kind", "ref"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": { "type": "string", "enum": ["url", "api", "function", "escalation"] },
+            "ref": { "type": "string", "description": "The URL, the API + query, the function name, or the escalation_id." },
+            "title": { "type": "string", "description": "Human-readable source name for the Sources tab." }
+          }
+        },
+        "retrieved_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Fact": {
+      "type": "object",
+      "description": "One fact and its evidence.",
+      "required": ["label", "value", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string", "description": "What the fact is, e.g. 'nearest main road'." },
+        "value": true,
+        "unit": { "type": "string" },
+        "evidence": { "$ref": "#/$defs/Evidence" }
+      }
+    }
+  }
+}

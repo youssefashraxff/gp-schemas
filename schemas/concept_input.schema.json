@@ -19,6 +19,7 @@
       }
     },
     "client_name": { "type": "string" },
+    "business_types": { "type": "array", "items": { "type": "string", "minLength": 1 }, "description": "Business types the client is considering. Optional; the research also recommends its own." },
     "budget_egp": { "type": "number", "minimum": 0 },
     "preferences": { "type": "string", "description": "Free-text preferences from the client." }
   }

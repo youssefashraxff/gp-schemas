@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evidence.schema.json",
+  "title": "Evidence",
+  "description": "Where one fact came from: computable (code), retrieved (a tool/source) or expert (an escalation answer). Other schemas copy this into their own $defs.",
+  "$ref": "#/$defs/Evidence",
+  "$defs": {
+    "Evidence": {
+      "type": "object",
+      "description": "Where one fact came from. A fact is never estimated by an LLM.",
+      "required": ["fact_type", "source", "retrieved_at"],
+      "additionalProperties": false,
+      "properties": {
+        "fact_type": { "type": "string", "enum": ["computable", "retrieved", "expert"] },
+        "source": {
+          "type": "object",
+          "required": ["kind", "ref"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": { "type": "string", "enum": ["url", "api", "function", "escalation"] },
+            "ref": { "type": "string", "description": "The URL, the API + query, the function name, or the escalation_id." },
+            "title": { "type": "string", "description": "Human-readable source name for the Sources tab." }
+          }
+        },
+        "retrieved_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Fact": {
+      "type": "object",
+      "description": "One fact and its evidence.",
+      "required": ["label", "value", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string", "description": "What the fact is, e.g. 'nearest main road'." },
+        "value": true,
+        "unit": { "type": "string" },
+        "evidence": { "$ref": "#/$defs/Evidence" }
+      }
+    }
+  }
+}

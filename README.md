@@ -15,6 +15,9 @@ Included as a **git submodule** at `schemas/` in both `gp-backend` and `gp-front
 | `schemas/phase_result.schema.json` | A saved, versioned phase output with field-level `built_from` references and content hashes |
 | `schemas/concept.schema.json` | The stored concept returned by `POST /concepts` |
 | `schemas/progress_event.schema.json` | The progress message sent over the WebSocket |
+| `schemas/evidence.schema.json` | Where one fact came from (computable / retrieved / expert). Copied into other schemas' `$defs` |
+| `schemas/escalation.schema.json` | A question an agent asks the expert mid-task, and its answer |
+| `schemas/research_output.schema.json` | The output fields of Phase 1 (Research), every fact with evidence |
 
 ## Changing a schema
 
