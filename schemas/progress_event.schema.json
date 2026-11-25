@@ -4,70 +4,27 @@
   "title": "ProgressEvent",
   "description": "A progress message the API sends over the WebSocket.",
   "type": "object",
-  "required": [
-    "concept_id",
-    "progress_phase",
-    "progress_status",
-    "progress_step",
-    "timestamp"
-  ],
+  "required": ["concept_id", "progress_phase", "progress_status", "progress_step", "timestamp"],
   "additionalProperties": false,
   "properties": {
-    "concept_id": {
-      "type": "string"
-    },
-    "progress_phase": {
-      "$ref": "#/$defs/PhaseName"
-    },
-    "progress_status": {
-      "$ref": "#/$defs/PhaseStatus"
-    },
-    "progress_step": {
-      "type": "string",
-      "description": "Current step inside the phase, e.g. 'market_research'."
-    },
-    "progress_agent": {
-      "type": "string",
-      "description": "Which agent inside the phase is working, e.g. 'site_analysis'. Absent for phase-level steps."
-    },
-    "progress_percent": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 100
-    },
-    "escalation_id": {
-      "type": "string",
-      "description": "Set while progress_status is waiting_for_expert: the open escalation the expert must answer."
-    },
-    "message": {
-      "type": "string"
-    },
-    "timestamp": {
-      "type": "string",
-      "format": "date-time"
-    }
+    "concept_id": { "type": "string" },
+    "progress_phase": { "$ref": "#/$defs/PhaseName" },
+    "progress_status": { "$ref": "#/$defs/PhaseStatus" },
+    "progress_step": { "type": "string", "description": "Current step inside the phase, e.g. 'market_research'." },
+    "progress_agent": { "type": "string", "description": "Which agent inside the phase is working, e.g. 'site_analysis'. Absent for phase-level steps." },
+    "progress_percent": { "type": "number", "minimum": 0, "maximum": 100 },
+    "escalation_id": { "type": "string", "description": "Set while progress_status is waiting_for_expert: the open escalation the expert must answer." },
+    "message": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" }
   },
   "$defs": {
     "PhaseName": {
       "type": "string",
-      "enum": [
-        "research",
-        "brand_design",
-        "visuals",
-        "investment"
-      ]
+      "enum": ["research", "brand_design", "visuals", "investment"]
     },
     "PhaseStatus": {
       "type": "string",
-      "enum": [
-        "queued",
-        "running",
-        "waiting_for_expert",
-        "awaiting_approval",
-        "done",
-        "stale",
-        "failed"
-      ]
+      "enum": ["queued", "running", "waiting_for_expert", "awaiting_approval", "done", "stale", "failed"]
     }
   }
 }
